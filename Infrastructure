@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure — AZ10</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background-color: #050505; color: #ffffff; }
+        .crop-top { object-fit: cover; object-position: center 100%; }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.1); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes zoomOut {
+            from { opacity: 1; transform: scale(1); }
+            to   { opacity: 0; transform: scale(0.1); }
+        }
+        .slide-up { opacity: 0; transform: translateY(60px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .animate-in { opacity: 1 !important; transform: translate(0, 0) !important; }
+    </style>
+</head>
+<body>
+
+```
+<!-- NAV -->
+<nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-black/80 backdrop-blur-md border-b border-white/10">
+    <a href="index.html">
+        <img src="https://raw.githubusercontent.com/Upstartspoon673/az10-image/main/minecraft_title.jpg" alt="AZ10 Logo" class="h-10 md:h-14 object-contain">
+    </a>
+    <ul class="flex gap-6 text-xs uppercase tracking-widest font-bold">
+        <li><a href="index.html" class="hover:text-green-400 transition">Home</a></li>
+        <li><a href="bases.html" class="hover:text-green-400 transition">Bases</a></li>
+        <li><a href="infrastructure.html" class="text-green-400">Infrastructure</a></li>
+        <li><a href="community.html" class="hover:text-green-400 transition">Community</a></li>
+    </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="pt-36 pb-12 px-6 text-center">
+    <p class="text-green-400 text-xs uppercase tracking-widest mb-3">Community Built</p>
+    <h1 class="text-5xl md:text-6xl font-bold tracking-tighter">Server Infrastructure</h1>
+    <p class="text-gray-400 mt-4 max-w-xl mx-auto">15+ shared farms and facilities built for the entire AZ10 community to use.</p>
+</section>
+
+<!-- INFRA GRID -->
+<section class="py-12 max-w-6xl mx-auto px-6">
+    <div id="infra-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-red-500 text-5xl font-light z-[110] transition-colors">&times;</button>
+    <div class="relative max-w-5xl w-full flex flex-col items-center">
+        <img id="lightbox-img" src="" class="max-h-[80vh] w-auto rounded-2xl shadow-2xl border border-white/10 object-contain">
+        <p id="lightbox-caption" class="mt-6 text-2xl font-bold text-green-400 italic tracking-widest uppercase"></p>
+    </div>
+</div>
+
+<footer class="py-12 text-center text-gray-600 text-[10px] uppercase tracking-widest border-t border-white/5">
+    <p>© 2026 AZ10 MINECRAFT SERVER. All rights reserved.</p>
+</footer>
+
+<script>
+    const infraItems = [
+        { name: "Bone Meal Farm", img: "bone%20meal%20farm.jpg" },
+        { name: "Enderman Farm", img: "enderman%20farm.jpg" },
+        { name: "Ghast Tear Farm", img: "ghast%20tear.jpg" },
+        { name: "Gold + XP Farm", img: "gold%2Bxp%20farm.jpg" },
+        { name: "Gunpowder Farm", img: "gunpowder%20farm.jpg" },
+        { name: "Lava Chicken Music", img: "lava%20chicken.jpg" },
+        { name: "Normal Farm", img: "normal%20farm.jpg" },
+        { name: "Raid Potion Farm", img: "raid%20farm.jpg" },
+        { name: "Sand Machine", img: "sand%20machine.jpg" },
+        { name: "Sugar Cane Farm", img: "sugar%20cane%20farm.jpg" },
+        { name: "Trade House", img: "trade%20house.jpg" },
+        { name: "Tree Farm", img: "tree%20farm.jpg" },
+        { name: "Trident Farm", img: "tridentfarm.jpg" },
+        { name: "Wither Skeleton Farm", img: "wither%20skeleton%20farm.jpg" },
+        { name: "Raid Farm 2", img: "RaidFarm1.jpg" }
+    ];
+
+    const grid = document.getElementById('infra-grid');
+    grid.innerHTML = infraItems.map(item => `
+        <div onclick="openLightbox('https://raw.githubusercontent.com/Upstartspoon673/az10-image/main/${item.img}', '${item.name}')"
+             class="bg-white/5 p-2 rounded-xl border border-white/5 hover:border-green-500/50 transition-all duration-300 group overflow-hidden cursor-pointer slide-up">
+            <div class="overflow-hidden rounded-lg mb-3 h-32 w-full">
+                <img src="https://raw.githubusercontent.com/Upstartspoon673/az10-image/main/${item.img}"
+                     class="h-full w-full crop-top grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                     referrerpolicy="no-referrer">
+            </div>
+            <p class="text-center text-[10px] sm:text-xs font-bold text-gray-400 group-hover:text-green-400 transition-colors uppercase">${item.name}</p>
+        </div>
+    `).join('');
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+
+    function openLightbox(src, name) {
+        lightboxImg.src = src;
+        lightboxCaption.innerText = name;
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        lightboxImg.style.animation = 'none';
+        void lightboxImg.offsetWidth;
+        lightboxImg.style.animation = 'zoomIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+    }
+
+    function closeLightbox() {
+        lightboxImg.style.animation = 'zoomOut 0.35s ease-in forwards';
+        setTimeout(() => {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }, 350);
+    }
+
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('animate-in'), entry.target.dataset.delay || 0);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('#infra-grid .slide-up').forEach((el, i) => {
+        el.dataset.delay = i * 80;
+        observer.observe(el);
+    });
+</script>
+```
+
+</body>
+</html>
