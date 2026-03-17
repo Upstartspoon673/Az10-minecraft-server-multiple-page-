@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ10 MINECRAFT SERVER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background-color: #050505; color: #ffffff; }
+        .minecraft-btn { transition: all 0.3s ease; background: #388e3c; border-bottom: 4px solid #1b5e20; }
+        .minecraft-btn:hover { background: #43a047; transform: translateY(2px); border-bottom-width: 2px; }
+        .connect-btn { transition: all 0.3s ease; background: #1976d2; border-bottom: 4px solid #0d47a1; }
+        .connect-btn:hover { background: #1e88e5; transform: translateY(2px); border-bottom-width: 2px; }
+        .slide-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .animate-in {
+            opacity: 1 !important;
+            transform: translate(0, 0) !important;
+        }
+        /* Active nav link */
+        nav a[href="index.html"] { color: #4ade80; }
+    </style>
+</head>
+<body>
+
+```
+<!-- NAV -->
+<nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-black/80 backdrop-blur-md border-b border-white/10">
+    <a href="index.html">
+        <img src="https://raw.githubusercontent.com/Upstartspoon673/az10-image/main/minecraft_title.jpg" alt="AZ10 Logo" class="h-10 md:h-14 object-contain">
+    </a>
+    <ul class="flex gap-6 text-xs uppercase tracking-widest font-bold">
+        <li><a href="index.html" class="text-green-400">Home</a></li>
+        <li><a href="bases.html" class="hover:text-green-400 transition">Bases</a></li>
+        <li><a href="infrastructure.html" class="hover:text-green-400 transition">Infrastructure</a></li>
+        <li><a href="community.html" class="hover:text-green-400 transition">Community</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="relative h-[100vh] flex items-center justify-center overflow-hidden border-b border-white/10">
+    <img src="https://raw.githubusercontent.com/Upstartspoon673/az10-image/main/title%20back%20ground.jpg" class="absolute inset-0 w-full h-full opacity-80" style="object-fit: cover; object-position: center center;" referrerpolicy="no-referrer">
+    <div class="relative z-10 text-center px-4">
+        <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-4 text-white drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)]">AZ10</h1>
+        <p class="text-xl md:text-2xl text-green-400 font-medium">GLOBAL BEDROCK MULTI-PLAYER SURVIVAL</p>
+    </div>
+</section>
+
+<!-- SERVER INFO -->
+<section class="py-12 bg-[#0a0a0a]">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="p-6 bg-white/5 rounded-2xl border border-white/10 text-center slide-up">
+            <h3 class="text-gray-400 text-xs mb-2 uppercase tracking-widest">Server Address</h3>
+            <p class="text-lg font-mono text-green-400 font-bold">az10.joinmc.playit.plus</p>
+            <p class="text-sm text-gray-400">Port: 27042</p>
+            <button id="copy-btn" onclick="copyFullIP()" class="mt-4 text-xs bg-white/10 px-3 py-1 rounded hover:bg-white/20 transition">Copy Full IP:Port</button>
+        </div>
+
+        <a href="https://discord.gg/jaZXT5Zq" target="_blank" class="minecraft-btn p-6 rounded-2xl flex items-center justify-center text-xl font-black italic slide-up">DISCORD</a>
+
+        <a href="minecraft://?addExternalServer=AZ10|az10.joinmc.playit.plus:27042" class="connect-btn p-6 rounded-2xl flex items-center justify-center text-xl font-black italic text-white text-center slide-up">QUICK JOIN MINECRAFT for android</a>
+
+        <div class="p-6 bg-white/5 rounded-2xl border border-white/10 text-center flex flex-col justify-center slide-up">
+            <h3 class="text-gray-400 text-sm mb-1 uppercase tracking-widest">Platform</h3>
+            <p class="text-xl font-bold">Bedrock Edition</p>
+        </div>
+    </div>
+</section>
+
+<!-- EXPLORE LINKS -->
+<section class="py-20 max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-10 border-l-4 border-green-500 pl-4 uppercase">Explore the Server</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="bases.html" class="group bg-white/5 hover:bg-white/10 border border-white/10 hover:border-green-500/50 rounded-2xl p-8 transition-all duration-300 slide-up">
+            <div class="text-green-400 text-4xl mb-4">🏰</div>
+            <h3 class="text-xl font-bold mb-2 group-hover:text-green-400 transition">Server Bases</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Explore the incredible player-built bases on AZ10, from survival fortresses to masterpiece builds.</p>
+        </a>
+        <a href="infrastructure.html" class="group bg-white/5 hover:bg-white/10 border border-white/10 hover:border-green-500/50 rounded-2xl p-8 transition-all duration-300 slide-up">
+            <div class="text-green-400 text-4xl mb-4">⚙️</div>
+            <h3 class="text-xl font-bold mb-2 group-hover:text-green-400 transition">Infrastructure</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">15+ community farms and facilities including XP farms, food farms, and the iconic Trade House.</p>
+        </a>
+        <a href="community.html" class="group bg-white/5 hover:bg-white/10 border border-white/10 hover:border-green-500/50 rounded-2xl p-8 transition-all duration-300 slide-up">
+            <div class="text-green-400 text-4xl mb-4">💬</div>
+            <h3 class="text-xl font-bold mb-2 group-hover:text-green-400 transition">Community</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Join the discussion, leave comments and connect with AZ10 players.</p>
+        </a>
+    </div>
+</section>
+
+<footer class="py-12 text-center text-gray-600 text-[10px] uppercase tracking-widest border-t border-white/5">
+    <p>© 2026 AZ10 MINECRAFT SERVER. All rights reserved.</p>
+</footer>
+
+<script>
+    function copyFullIP() {
+        const fullIP = "az10.joinmc.playit.plus:27042";
+        navigator.clipboard.writeText(fullIP);
+        const btn = document.getElementById('copy-btn');
+        btn.innerHTML = '✅ Copied!';
+        btn.classList.add('text-green-400');
+        setTimeout(() => {
+            btn.innerHTML = 'Copy Full IP:Port';
+            btn.classList.remove('text-green-400');
+        }, 2000);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('animate-in'), entry.target.dataset.delay || 0);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.slide-up').forEach((el, i) => {
+        el.dataset.delay = i * 100;
+        observer.observe(el);
+    });
+</script>
+```
+
+</body>
+</html>
